@@ -20,9 +20,9 @@ def extract_features(image):
         gray = cv2.cvtColor(img_resized, cv2.COLOR_BGR2GRAY)
         hsv = cv2.cvtColor(img_resized, cv2.COLOR_BGR2HSV)
 
-        h_mean = np.mean(hsv[:,:,0])
-        s_mean = np.mean(hsv[:,:,1])
-        v_mean = np.mean(hsv[:,:,2])
+        h_mean = np.mean(hsv[:, :, 0])
+        s_mean = np.mean(hsv[:, :, 1])
+        v_mean = np.mean(hsv[:, :, 2])
 
         sobelx = cv2.Sobel(gray, cv2.CV_64F, 1, 0, ksize=5)
         sobely = cv2.Sobel(gray, cv2.CV_64F, 0, 1, ksize=5)
@@ -87,6 +87,11 @@ def main():
         This app uses a Random Forest model trained on image features
         (color, texture, shape) to predict potential diseases in crop leaves.
 
+        **Supported Crops:**
+        - 🌽 Corn
+        - 🌾 Wheat
+        - 🌾 Rice
+
         **Features Used:**
         - HSV Color Means
         - Sobel Gradient Mean
@@ -96,8 +101,8 @@ def main():
     )
     st.sidebar.markdown("---")
 
-    st.title("🌿 Crop Disease Detection")
-    st.markdown("Upload an image of a crop leaf to analyze its condition.")
+    st.title("🌿 Corn, Rice & Wheat Disease Detection")
+    st.markdown("Upload an image of a crop leaf (Corn, Rice, or Wheat) to analyze its condition.")
 
     uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
 
